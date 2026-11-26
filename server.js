@@ -20,6 +20,22 @@ io.on("connection", (socket) => {
 
 const PORT = process.env.PORT || 3000;
 
+const supabase = require("./config/supabase");
+
+app.get("/api/services", async (req, res) => {
+    const { data, error } = await supabase
+        .from("services")
+        .select("*");
+
+    if (error) {
+        return res.status(500).json({
+            error: error.message
+        });
+    }
+
+    res.json(data);
+});
+
 server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
