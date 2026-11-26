@@ -8,6 +8,9 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.json());
+const authRoutes = require("./routes/auth");
+
+app.use("/api/auth", authRoutes);
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
