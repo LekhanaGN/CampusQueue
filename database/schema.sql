@@ -81,3 +81,4 @@ ON services
 FOR SELECT
 TO anon, authenticated
 USING (is_active = TRUE);
+
